@@ -16,7 +16,13 @@ class WeatherStateTab extends StatelessWidget {
   final void Function()? onTapLeading;
   final void Function()? onTapShiftCard;
 
-  const WeatherStateTab({super.key, required this.time, required this.dayweek, required this.times, this.onTapLeading, this.onTapShiftCard});
+  const WeatherStateTab(
+      {super.key,
+      required this.time,
+      required this.dayweek,
+      required this.times,
+      this.onTapLeading,
+      this.onTapShiftCard});
 
   @override
   Widget build(BuildContext context) {
@@ -28,142 +34,159 @@ class WeatherStateTab extends StatelessWidget {
           showActions: true,
           onTapLeading: onTapLeading,
         ),
-        const SizedBox(height: 15,),
-
-
+        const SizedBox(
+          height: 15,
+        ),
         Text(
           dayweek.name ?? "",
           style: const TextStyle(
-            fontFamily: ConstsUtils.fontregular,
-            fontSize: 13,
-            color: Color(0xffDEDDDD),
-            fontWeight: FontWeight.w600
-          ),
+              fontFamily: ConstsUtils.fontregular,
+              fontSize: 13,
+              color: Color(0xffDEDDDD),
+              fontWeight: FontWeight.w600),
         ),
-
-        const SizedBox(height: 20,),
-        
+        const SizedBox(
+          height: 20,
+        ),
         Image.asset(
           imgByStatus(status: dayweek.manha?.tempo ?? ""),
           height: 139,
           width: 172,
         ),
-
-        const SizedBox(height: 15,),
-
-         Text(
+        const SizedBox(
+          height: 15,
+        ),
+        Text(
           "${dayweek.manha?.graus ?? 0}º",
           style: const TextStyle(
-            fontFamily: ConstsUtils.fontregular,
-            fontSize: 81,
-            color: Colors.white,
-            fontWeight: FontWeight.w600
-          ),
+              fontFamily: ConstsUtils.fontregular,
+              fontSize: 81,
+              color: Colors.white,
+              fontWeight: FontWeight.w600),
         ),
-
         const Text(
           "26 de Maio de 2023",
           style: TextStyle(
-            fontFamily: ConstsUtils.fontregular,
-            fontSize: 13,
-            color: Color(0xffDEDDDD),
-            fontWeight: FontWeight.w600
-          ),
+              fontFamily: ConstsUtils.fontregular,
+              fontSize: 13,
+              color: Color(0xffDEDDDD),
+              fontWeight: FontWeight.w600),
         ),
-
         Container(
           margin: const EdgeInsets.only(left: 10, bottom: 10),
           alignment: Alignment.bottomLeft,
           child: const Text(
             "Hoje",
             style: TextStyle(
-              fontFamily: ConstsUtils.fontregular,
-              fontSize: 13,
-              color: Color(0xffDEDDDD),
-              fontWeight: FontWeight.w600
-            ),
+                fontFamily: ConstsUtils.fontregular,
+                fontSize: 13,
+                color: Color(0xffDEDDDD),
+                fontWeight: FontWeight.w600),
           ),
         ),
-
         SizedBox(
           height: 155,
           width: context.sizedDevice.width,
-          child: Row(
-            children: [
-              CardWeathStateShiftComponent(
-                index: 0,
-                shift: "Manhã",
-                imgDegree: imgByStatus(status: getWeekDay(weekday: DateTime.now().weekday, time: time)?.manha?.tempo ?? ""),
-                degree: "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.manha?.graus ?? ""}º",
-                onTap: onTapShiftCard,
-              ),
-
-              CardWeathStateShiftComponent(
-                index: 1,
-                shift: "Tarde",
-                imgDegree: imgByStatus(status: getWeekDay(weekday: DateTime.now().weekday, time: time)?.tarde?.tempo ?? ""),
-                degree: "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.tarde?.graus ?? ""}º",
-                onTap: onTapShiftCard,
-              ),
-
-              CardWeathStateShiftComponent(
-                index: 2,
-                shift: "Noite",
-                imgDegree: imgByStatus(status: getWeekDay(weekday: DateTime.now().weekday, time: time)?.noite?.tempo ?? ""),
-                degree: "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.noite?.graus ?? ""}º",
-                onTap: onTapShiftCard,
-              )
-            ]
-          ),
+          child: Row(children: [
+            CardWeathStateShiftComponent(
+              index: 0,
+              shift: "Manhã",
+              imgDegree: imgByStatus(
+                  status:
+                      getWeekDay(weekday: DateTime.now().weekday, time: time)
+                              ?.manha
+                              ?.tempo ??
+                          ""),
+              degree:
+                  "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.manha?.graus ?? ""}º",
+              onTap: onTapShiftCard,
+            ),
+            CardWeathStateShiftComponent(
+              index: 1,
+              shift: "Tarde",
+              imgDegree: imgByStatus(
+                  status:
+                      getWeekDay(weekday: DateTime.now().weekday, time: time)
+                              ?.tarde
+                              ?.tempo ??
+                          ""),
+              degree:
+                  "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.tarde?.graus ?? ""}º",
+              onTap: onTapShiftCard,
+            ),
+            CardWeathStateShiftComponent(
+              index: 2,
+              shift: "Noite",
+              imgDegree: imgByStatus(
+                  status:
+                      getWeekDay(weekday: DateTime.now().weekday, time: time)
+                              ?.noite
+                              ?.tempo ??
+                          ""),
+              degree:
+                  "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.noite?.graus ?? ""}º",
+              onTap: onTapShiftCard,
+            )
+          ]),
         ),
-
-        const SizedBox(height: 20,),
-
-
+        const SizedBox(
+          height: 20,
+        ),
         Container(
           margin: const EdgeInsets.only(left: 10, bottom: 10),
           alignment: Alignment.bottomLeft,
           child: const Text(
             "Estados",
             style: TextStyle(
-              fontFamily: ConstsUtils.fontregular,
-              fontSize: 13,
-              color: Color(0xffDEDDDD),
-              fontWeight: FontWeight.w600
-            ),
+                fontFamily: ConstsUtils.fontregular,
+                fontSize: 13,
+                color: Color(0xffDEDDDD),
+                fontWeight: FontWeight.w600),
           ),
         ),
-
         SizedBox(
           height: 50,
           width: context.sizedDevice.width,
           child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: times.map(
-              (time) => CardWeathStateHorizontalCompoent(
-                index: times.indexOf(time),
-                state: time.estado ?? "",
-                degree: "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.manha?.graus ?? 0}",
-                imgDegree: imgByStatus(status: getWeekDay(weekday: DateTime.now().weekday, time: time)?.manha?.tempo ?? ""),
-              )
-            ).toList()
-          ),
+              scrollDirection: Axis.horizontal,
+              children: times
+                  .map((time) => CardWeathStateHorizontalCompoent(
+                        index: times.indexOf(time),
+                        state: time.estado ?? "",
+                        degree:
+                            "${getWeekDay(weekday: DateTime.now().weekday, time: time)?.manha?.graus ?? 0}",
+                        imgDegree: imgByStatus(
+                            status: getWeekDay(
+                                        weekday: DateTime.now().weekday,
+                                        time: time)
+                                    ?.manha
+                                    ?.tempo ??
+                                ""),
+                      ))
+                  .toList()),
         ),
       ],
     );
   }
 
-
-  DayWeekEntity? getWeekDay({ required int weekday, required TimeEntity time }) {
+  DayWeekEntity? getWeekDay({required int weekday, required TimeEntity time}) {
     switch (weekday) {
-      case 1: return time.segunda;
-      case 2: return time.terca;
-      case 3: return time.quarta;
-      case 4: return time.quinta;
-      case 5: return time.sexta;
-      case 6: return time.sabado;
-      case 7: return time.sabado;
-      default: return time.segunda;
+      case 1:
+        return time.segunda;
+      case 2:
+        return time.terca;
+      case 3:
+        return time.quarta;
+      case 4:
+        return time.quinta;
+      case 5:
+        return time.sexta;
+      case 6:
+        return time.sabado;
+      case 7:
+        return time.domingo;
+      default:
+        return time.segunda;
     }
   }
 }

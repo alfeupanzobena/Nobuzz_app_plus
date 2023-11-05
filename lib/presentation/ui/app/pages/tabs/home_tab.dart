@@ -29,40 +29,52 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const CustomAppBarComponent(title: "Search for City",),
+        const CustomAppBarComponent(
+          title: "Search for City",
+        ),
         Expanded(
           child: ListView(
-            padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
-              top: 30,
-              bottom: 20
-            ),
-            children: times.map(
-              (time) => CardWeatherState(
-                state: time.estado ?? "", 
-                imgWeather: imgByStatus(status: getWeekDay(weekday: DateTime.now().weekday, time: time)!.manha?.tempo ?? "" ),
-                onTap: () {
-                  onChanged(time);
-                },
-              )
-            ).toList(),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 20),
+            children: times
+                .map((time) => CardWeatherState(
+                      state: time.estado ?? "",
+                      imgWeather: imgByStatus(
+                          status: getWeekDay(
+                                      weekday: DateTime.now().weekday,
+                                      time: time)!
+                                  .manha
+                                  ?.tempo ??
+                              ""),
+                      onTap: () {
+                        onChanged(time);
+                      },
+                    ))
+                .toList(),
           ),
         ),
       ],
     );
   }
 
-  DayWeekEntity? getWeekDay({ required int weekday, required TimeEntity time }) {
+  DayWeekEntity? getWeekDay({required int weekday, required TimeEntity time}) {
     switch (weekday) {
-      case 1: return time.segunda;
-      case 2: return time.terca;
-      case 3: return time.quarta;
-      case 4: return time.quinta;
-      case 5: return time.sexta;
-      case 6: return time.sabado;
-      case 7: return time.sabado;
-      default: return time.segunda;
+      case 1:
+        return time.segunda;
+      case 2:
+        return time.terca;
+      case 3:
+        return time.quarta;
+      case 4:
+        return time.quinta;
+      case 5:
+        return time.sexta;
+      case 6:
+        return time.sabado;
+      case 7:
+        return time.domingo;
+      default:
+        return time.segunda;
     }
   }
 }
